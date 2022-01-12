@@ -1,0 +1,14 @@
+root = true
+
+[*]
+end_of_file = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{dart,java,kt,swift,json,js,html}]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.bat]
+end_of_file = crlf

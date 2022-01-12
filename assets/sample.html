@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>dummy</title>
+    <script>
+      window.onSsiAvailable = async function(t) {
+        var ret = await t.someFunc({title: 'Hello', content: 'World!', other: 'Sample'});
+        var div = document.getElementById('test');
+        div.innerText = JSON.stringify(ret);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <div id="test"></div>
+  </body>
+</html>
