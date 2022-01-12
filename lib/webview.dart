@@ -47,14 +47,21 @@ class _WebViewAsyncSsiTestState extends State<WebViewAsyncSsiTest> {
 
   Future<void> _onMessageReceived(JavascriptMessage message) async {
     final env = jsonDecode(message.message);
-    final command = env['command'] as String;
-    final id = env['id'] as int;
+    final id = env['id'] as int; // for _complete call
+    final command = env['command'] as String; // command invoked by JS
+    final arg = env['arg']; // command argument passed by JS
     switch (command) {
       case 'someFunc':
-        _complete(id, data: {"json-test": "testing JSON serialization", "single-quote-test": "It's show time!"});
+        _complete(id, data: {
+          "json-test": "testing JSON serialization",
+          "single-quote-test": "It's show time!",
+          "command-received": command,
+          "arg-received": arg,
+        });
         break;
       default:
-        _complete(id, error: 'Unknown command.');
+        // error handling
+        _complete(id, error: 'Unknown command: $command');
     }
   }
 

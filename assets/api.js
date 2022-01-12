@@ -62,7 +62,7 @@ const _ssiGlue = {
    */
   invoke: function(command, arg) {
     return _ssiGlue._waitForResponse((id) => {
-      const data = { command, id, arg: arg };
+      const data = { id, command, arg: arg };
       _ssiChannel.postMessage(`${JSON.stringify(data)}`);
     });
   },
