@@ -68,18 +68,24 @@ const _ssiGlue = {
   },
 };
 
-var TestImpl = (function() {
-  function ATestImpl() {
-    this.someFunc = async function (obj) {
-      console.log(`someFunc start: ${JSON.stringify(obj)}`);
-      var ret = await _ssiGlue.invoke('someFunc', obj);
-      console.log(`someFunc end: ${JSON.stringify(ret)}`);
-      return ret;
-    };
+/**
+ * FIXME: Simple Sample SSI code.
+ */
+var SsiTest = (function() {
+  class SsiTestImpl {
+    constructor() {
+      this.someFunc = async function (obj) {
+        console.log(`someFunc start: ${JSON.stringify(obj)}`);
+        var ret = await _ssiGlue.invoke('someFunc', obj);
+        console.log(`someFunc end: ${JSON.stringify(ret)}`);
+        return ret;
+      };
+    }
   }
-  return ATestImpl;
+  return SsiTestImpl;
 }());
 
+// We defines onSsiAvailable to notify when SSI function ready
 if (window.onSsiAvailable) {
-  window.onSsiAvailable(new TestImpl());
+  window.onSsiAvailable(new SsiTest());
 }
